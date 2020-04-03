@@ -1,0 +1,8 @@
+[submodule "freedom"]
+	path = freedom
+	url = https://github.com/zxhero/freedom.git
+    branch = VCU128
+[submodule "SERVE"]
+	path = SERVE
+	url = https://github.com/zxhero/SERVE.git
+    branch = VCU128

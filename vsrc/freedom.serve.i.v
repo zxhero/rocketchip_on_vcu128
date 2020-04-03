@@ -1,0 +1,1 @@
+/home/zhangxu/riscv-os-on-pynq/riscv-hw/builds/serve/freedom.serve.i.v
