@@ -58,3 +58,15 @@ set_property PACKAGE_PIN BF25 [get_ports {led[3]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {led[3]}]
 set_property DRIVE 8 [get_ports {led[3]}]
 set_property SLEW SLOW [get_ports {led[3]}]
+
+# Bank: 40 - GPIO_LED3
+set_property PACKAGE_PIN BF26 [get_ports {led[4]}]
+set_property IOSTANDARD LVCMOS18 [get_ports {led[4]}]
+set_property DRIVE 8 [get_ports {led[4]}]
+set_property SLEW SLOW [get_ports {led[4]}]
+
+# Bank: 40 - GPIO_LED3
+set_property PACKAGE_PIN BF27 [get_ports {led[5]}]
+set_property IOSTANDARD LVCMOS18 [get_ports {led[5]}]
+set_property DRIVE 8 [get_ports {led[5]}]
+set_property SLEW SLOW [get_ports {led[5]}]

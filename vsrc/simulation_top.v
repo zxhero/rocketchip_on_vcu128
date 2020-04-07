@@ -3,6 +3,7 @@
 `define RANDOMIZE_GARBAGE_ASSIGN
 `define RANDOMIZE_REG_INIT
 `define RANDOMIZE_DELAY 10
+/*
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
 `define RANDOMIZE
 `endif
@@ -15,6 +16,7 @@
 `ifdef RANDOMIZE_MEM_INIT
 `define RANDOMIZE
 `endif
+*/
 
 module simulation_top
 (
@@ -45,6 +47,7 @@ wire    uart_int;
   assign uart_int = 1'b0;
 
 wire           mem_axi_1_aw_ready;
+assign    mem_axi_1_aw_ready = 'd1;
 wire           mem_axi_1_aw_valid;
 wire    [3:0]  mem_axi_1_aw_bits_id;
 wire    [35:0] mem_axi_1_aw_bits_addr;
@@ -56,6 +59,7 @@ wire    [3:0]  mem_axi_1_aw_bits_cache;
 wire    [2:0]  mem_axi_1_aw_bits_prot;
 wire    [3:0]  mem_axi_1_aw_bits_qos;
 wire           mem_axi_1_w_ready;
+assign    mem_axi_1_w_ready = 'd1;
 wire           mem_axi_1_w_valid;
 wire    [63:0] mem_axi_1_w_bits_data;
 wire    [7:0]  mem_axi_1_w_bits_strb;
@@ -64,7 +68,11 @@ wire           mem_axi_1_b_ready;
 wire           mem_axi_1_b_valid;
 wire    [3:0]  mem_axi_1_b_bits_id;
 wire    [1:0]  mem_axi_1_b_bits_resp;
+assign    mem_axi_1_b_valid = 'd0;
+assign    mem_axi_1_b_bits_id = 'd0;
+assign    mem_axi_1_b_bits_resp = 'd0;
 wire           mem_axi_1_ar_ready;
+assign    mem_axi_1_ar_ready = 'd1;
 wire           mem_axi_1_ar_valid;
 wire    [3:0]  mem_axi_1_ar_bits_id;
 wire    [35:0] mem_axi_1_ar_bits_addr;
@@ -81,8 +89,14 @@ wire    [3:0]  mem_axi_1_r_bits_id;
 wire    [63:0] mem_axi_1_r_bits_data;
 wire    [1:0]  mem_axi_1_r_bits_resp;
 wire           mem_axi_1_r_bits_last;
+assign    mem_axi_1_r_valid = 'd0;
+assign    mem_axi_1_r_bits_id = 'd0;
+assign    mem_axi_1_r_bits_data = 'd0;
+assign    mem_axi_1_r_bits_resp = 'd0;
+assign    mem_axi_1_r_bits_last = 'd0;
 
 wire           mmio_axi_0_aw_ready;
+assign    mmio_axi_0_aw_ready = 'd1;
 wire           mmio_axi_0_aw_valid;
 wire    [3:0]  mmio_axi_0_aw_bits_id;
 wire    [31:0] mmio_axi_0_aw_bits_addr;
@@ -94,6 +108,7 @@ wire    [3:0]  mmio_axi_0_aw_bits_cache;
 wire    [2:0]  mmio_axi_0_aw_bits_prot;
 wire    [3:0]  mmio_axi_0_aw_bits_qos;
 wire           mmio_axi_0_w_ready;
+assign    mmio_axi_0_w_ready = 'd1;
 wire           mmio_axi_0_w_valid;
 wire    [63:0] mmio_axi_0_w_bits_data;
 wire    [7:0]  mmio_axi_0_w_bits_strb;
@@ -102,7 +117,11 @@ wire           mmio_axi_0_b_ready;
 wire           mmio_axi_0_b_valid;
 wire    [3:0]  mmio_axi_0_b_bits_id;
 wire    [1:0]  mmio_axi_0_b_bits_resp;
+assign    mmio_axi_0_b_bits_id = 'd0;
+assign    mmio_axi_0_b_valid = 'd0;
+assign    mmio_axi_0_b_bits_resp = 'd0;
 wire           mmio_axi_0_ar_ready;
+assign    mmio_axi_0_ar_ready = 'd1;
 wire           mmio_axi_0_ar_valid;
 wire    [3:0]  mmio_axi_0_ar_bits_id;
 wire    [31:0] mmio_axi_0_ar_bits_addr;
@@ -119,11 +138,16 @@ wire    [3:0]  mmio_axi_0_r_bits_id;
 wire    [63:0] mmio_axi_0_r_bits_data;
 wire    [1:0]  mmio_axi_0_r_bits_resp;
 wire           mmio_axi_0_r_bits_last;
+assign    mmio_axi_0_r_valid = 'd0;
+assign    mmio_axi_0_r_bits_id = 'd0;
+assign    mmio_axi_0_r_bits_data = 'd0;
+assign    mmio_axi_0_r_bits_resp = 'd0;
+assign    mmio_axi_0_r_bits_last = 'd0;
 
 SERVETop SERVETop(
   .clock (cpu_clk), // @[:freedom.serve.SERVEiFPGAConfig.fir@561594.4]
   .reset (cpu_reset | ~ddr4_init_copmlete), // @[:freedom.serve.SERVEiFPGAConfig.fir@561595.4]
-  . io_ps_axi_slave_aw_ready (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
+  /*. io_ps_axi_slave_aw_ready (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_aw_valid ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_aw_bits_id ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_aw_bits_addr ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
@@ -159,7 +183,7 @@ SERVETop SERVETop(
   .io_ps_axi_slave_r_bits_id (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_r_bits_data (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_r_bits_resp (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
-  .io_ps_axi_slave_r_bits_last (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
+  .io_ps_axi_slave_r_bits_last (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]*/
   .io_mac_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_sdio_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_uart_int (uart_int), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]

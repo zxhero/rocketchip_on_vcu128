@@ -27,13 +27,10 @@ module vcu128_top
     input   reset,
     input   rs232_uart_0_rxd,
     output  rs232_uart_0_txd,
-    output [3:0]            led
+    output [5:0]            led
 );
 
-assign led[0] = ddr4_init_copmlete;
-assign led[1] = ~cpu_reset;
-assign led[2] = mem_axi_1_ar_valid;
-assign led[3] = mem_axi_1_ar_ready;
+
 
 wire    cpu_clk;
 wire    cpu_reset;
@@ -117,6 +114,12 @@ wire    [63:0] mmio_axi_0_r_bits_data;
 wire    [1:0]  mmio_axi_0_r_bits_resp;
 wire           mmio_axi_0_r_bits_last;
 
+assign led[0] = ddr4_init_copmlete;
+assign led[1] = ~cpu_reset;
+assign led[2] = mem_axi_1_ar_valid;
+assign led[3] = mem_axi_1_ar_ready;
+assign led[4] = mmio_axi_0_ar_ready;
+assign led[5] = mmio_axi_0_ar_valid;
 top_wrapper top_wrapper(
     .SPI_0_io0_io                   (SPI_0_io0_io),
     .SPI_0_io1_io                   (SPI_0_io1_io),
@@ -229,7 +232,7 @@ top_wrapper top_wrapper(
 SERVETop SERVETop(
   .clock (cpu_clk), // @[:freedom.serve.SERVEiFPGAConfig.fir@561594.4]
   .reset (cpu_reset | ~ddr4_init_copmlete), // @[:freedom.serve.SERVEiFPGAConfig.fir@561595.4]
-  . io_ps_axi_slave_aw_ready (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
+  /*. io_ps_axi_slave_aw_ready (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_aw_valid ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_aw_bits_id ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_aw_bits_addr ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
@@ -265,7 +268,7 @@ SERVETop SERVETop(
   .io_ps_axi_slave_r_bits_id (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_r_bits_data (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_r_bits_resp (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
-  .io_ps_axi_slave_r_bits_last (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
+  .io_ps_axi_slave_r_bits_last (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]*/
   .io_mac_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_sdio_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_uart_int (uart_int), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
