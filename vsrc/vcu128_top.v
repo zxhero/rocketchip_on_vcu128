@@ -27,7 +27,7 @@ module vcu128_top
     input   reset,
     input   rs232_uart_0_rxd,
     output  rs232_uart_0_txd,
-    output [5:0]            led
+    output [7:0]            led
 );
 
 
@@ -38,88 +38,86 @@ wire    ddr4_init_copmlete;
 wire    flash_int;
 wire    uart_int;
 
-wire           mem_axi_1_aw_ready;
-wire           mem_axi_1_aw_valid;
+(* mark_debug="true" *) wire           mem_axi_1_aw_ready;
+(* mark_debug="true" *) wire           mem_axi_1_aw_valid;
 wire    [3:0]  mem_axi_1_aw_bits_id;
-wire    [35:0] mem_axi_1_aw_bits_addr;
-wire    [7:0]  mem_axi_1_aw_bits_len;
-wire    [2:0]  mem_axi_1_aw_bits_size;
+(* mark_debug="true" *) wire    [35:0] mem_axi_1_aw_bits_addr;
+(* mark_debug="true" *) wire    [7:0]  mem_axi_1_aw_bits_len;
+(* mark_debug="true" *) wire    [2:0]  mem_axi_1_aw_bits_size;
 wire    [1:0]  mem_axi_1_aw_bits_burst;
 wire           mem_axi_1_aw_bits_lock;
 wire    [3:0]  mem_axi_1_aw_bits_cache;
 wire    [2:0]  mem_axi_1_aw_bits_prot;
 wire    [3:0]  mem_axi_1_aw_bits_qos;
-wire           mem_axi_1_w_ready;
-wire           mem_axi_1_w_valid;
-wire    [63:0] mem_axi_1_w_bits_data;
+(* mark_debug="true" *) wire           mem_axi_1_w_ready;
+(* mark_debug="true" *) wire           mem_axi_1_w_valid;
+(* mark_debug="true" *) wire    [63:0] mem_axi_1_w_bits_data;
 wire    [7:0]  mem_axi_1_w_bits_strb;
 wire           mem_axi_1_w_bits_last;
-wire           mem_axi_1_b_ready;
-wire           mem_axi_1_b_valid;
+(* mark_debug="true" *) wire           mem_axi_1_b_ready;
+(* mark_debug="true" *) wire           mem_axi_1_b_valid;
 wire    [3:0]  mem_axi_1_b_bits_id;
 wire    [1:0]  mem_axi_1_b_bits_resp;
-wire           mem_axi_1_ar_ready;
-wire           mem_axi_1_ar_valid;
+(* mark_debug="true" *) wire           mem_axi_1_ar_ready;
+(* mark_debug="true" *) wire           mem_axi_1_ar_valid;
 wire    [3:0]  mem_axi_1_ar_bits_id;
-wire    [35:0] mem_axi_1_ar_bits_addr;
-wire    [7:0]  mem_axi_1_ar_bits_len;
-wire    [2:0]  mem_axi_1_ar_bits_size;
+(* mark_debug="true" *) wire    [35:0] mem_axi_1_ar_bits_addr;
+(* mark_debug="true" *) wire    [7:0]  mem_axi_1_ar_bits_len;
+(* mark_debug="true" *) wire    [2:0]  mem_axi_1_ar_bits_size;
 wire    [1:0]  mem_axi_1_ar_bits_burst;
 wire           mem_axi_1_ar_bits_lock;
 wire    [3:0]  mem_axi_1_ar_bits_cache;
 wire    [2:0]  mem_axi_1_ar_bits_prot;
 wire    [3:0]  mem_axi_1_ar_bits_qos;
-wire           mem_axi_1_r_ready;
-wire           mem_axi_1_r_valid;
+(* mark_debug="true" *) wire           mem_axi_1_r_ready;
+(* mark_debug="true" *) wire           mem_axi_1_r_valid;
 wire    [3:0]  mem_axi_1_r_bits_id;
-wire    [63:0] mem_axi_1_r_bits_data;
+(* mark_debug="true" *) wire    [63:0] mem_axi_1_r_bits_data;
 wire    [1:0]  mem_axi_1_r_bits_resp;
 wire           mem_axi_1_r_bits_last;
 
-wire           mmio_axi_0_aw_ready;
-wire           mmio_axi_0_aw_valid;
+(* mark_debug="true" *) wire           mmio_axi_0_aw_ready;
+(* mark_debug="true" *) wire           mmio_axi_0_aw_valid;
 wire    [3:0]  mmio_axi_0_aw_bits_id;
-wire    [31:0] mmio_axi_0_aw_bits_addr;
-wire    [7:0]  mmio_axi_0_aw_bits_len;
-wire    [2:0]  mmio_axi_0_aw_bits_size;
+(* mark_debug="true" *) wire    [35:0] mmio_axi_0_aw_bits_addr;
+(* mark_debug="true" *) wire    [7:0]  mmio_axi_0_aw_bits_len;
+(* mark_debug="true" *) wire    [2:0]  mmio_axi_0_aw_bits_size;
 wire    [1:0]  mmio_axi_0_aw_bits_burst;
 wire           mmio_axi_0_aw_bits_lock;
 wire    [3:0]  mmio_axi_0_aw_bits_cache;
 wire    [2:0]  mmio_axi_0_aw_bits_prot;
 wire    [3:0]  mmio_axi_0_aw_bits_qos;
-wire           mmio_axi_0_w_ready;
-wire           mmio_axi_0_w_valid;
-wire    [63:0] mmio_axi_0_w_bits_data;
+(* mark_debug="true" *) wire           mmio_axi_0_w_ready;
+(* mark_debug="true" *) wire           mmio_axi_0_w_valid;
+(* mark_debug="true" *) wire    [63:0] mmio_axi_0_w_bits_data;
 wire    [7:0]  mmio_axi_0_w_bits_strb;
 wire           mmio_axi_0_w_bits_last;
-wire           mmio_axi_0_b_ready;
-wire           mmio_axi_0_b_valid;
+(* mark_debug="true" *) wire           mmio_axi_0_b_ready;
+(* mark_debug="true" *) wire           mmio_axi_0_b_valid;
 wire    [3:0]  mmio_axi_0_b_bits_id;
 wire    [1:0]  mmio_axi_0_b_bits_resp;
-wire           mmio_axi_0_ar_ready;
-wire           mmio_axi_0_ar_valid;
+(* mark_debug="true" *) wire           mmio_axi_0_ar_ready;
+(* mark_debug="true" *) wire           mmio_axi_0_ar_valid;
 wire    [3:0]  mmio_axi_0_ar_bits_id;
-wire    [31:0] mmio_axi_0_ar_bits_addr;
-wire    [7:0]  mmio_axi_0_ar_bits_len;
-wire    [2:0]  mmio_axi_0_ar_bits_size;
+(* mark_debug="true" *) wire    [35:0] mmio_axi_0_ar_bits_addr;
+(* mark_debug="true" *) wire    [7:0]  mmio_axi_0_ar_bits_len;
+(* mark_debug="true" *) wire    [2:0]  mmio_axi_0_ar_bits_size;
 wire    [1:0]  mmio_axi_0_ar_bits_burst;
 wire           mmio_axi_0_ar_bits_lock;
 wire    [3:0]  mmio_axi_0_ar_bits_cache;
 wire    [2:0]  mmio_axi_0_ar_bits_prot;
 wire    [3:0]  mmio_axi_0_ar_bits_qos;
-wire           mmio_axi_0_r_ready;
-wire           mmio_axi_0_r_valid;
+(* mark_debug="true" *) wire           mmio_axi_0_r_ready;
+(* mark_debug="true" *) wire           mmio_axi_0_r_valid;
 wire    [3:0]  mmio_axi_0_r_bits_id;
-wire    [63:0] mmio_axi_0_r_bits_data;
+(* mark_debug="true" *) wire    [63:0] mmio_axi_0_r_bits_data;
 wire    [1:0]  mmio_axi_0_r_bits_resp;
 wire           mmio_axi_0_r_bits_last;
 
-assign led[0] = ddr4_init_copmlete;
-assign led[1] = ~cpu_reset;
-assign led[2] = mem_axi_1_ar_valid;
-assign led[3] = mem_axi_1_ar_ready;
-assign led[4] = mmio_axi_0_ar_ready;
-assign led[5] = mmio_axi_0_ar_valid;
+assign led[0] = cpu_reset | ~ddr4_init_copmlete;
+assign led[1] = uart_int;
+assign led[2] = flash_int;
+
 top_wrapper top_wrapper(
     .SPI_0_io0_io                   (SPI_0_io0_io),
     .SPI_0_io1_io                   (SPI_0_io1_io),
@@ -270,8 +268,8 @@ SERVETop SERVETop(
   .io_ps_axi_slave_r_bits_resp (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_ps_axi_slave_r_bits_last (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]*/
   .io_mac_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
-  .io_sdio_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
-  .io_uart_int (uart_int), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
+  .io_flash_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
+  .io_uart_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   .io_usb_int ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   //.io_jtag_TCK ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
   //.io_jtag_TMS ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561597.4]
@@ -354,7 +352,7 @@ SERVETop SERVETop(
   .mem_axi_1_r_bits_data (mem_axi_1_r_bits_data), // @[:freedom.serve.SERVEiFPGAConfig.fir@561599.4]
   .mem_axi_1_r_bits_resp (mem_axi_1_r_bits_resp), // @[:freedom.serve.SERVEiFPGAConfig.fir@561599.4]
   .mem_axi_1_r_bits_last (mem_axi_1_r_bits_last), // @[:freedom.serve.SERVEiFPGAConfig.fir@561599.4]
-  .  mem_axi_2_aw_ready ('d1), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
+  /*.  mem_axi_2_aw_ready ('d1), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
   .mem_axi_2_aw_valid (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
   .mem_axi_2_aw_bits_id (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
   .mem_axi_2_aw_bits_addr (), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
@@ -390,7 +388,7 @@ SERVETop SERVETop(
   .mem_axi_2_r_bits_id ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
   .mem_axi_2_r_bits_data ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
   .mem_axi_2_r_bits_resp ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
-  .mem_axi_2_r_bits_last ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]
+  .mem_axi_2_r_bits_last ('d0), // @[:freedom.serve.SERVEiFPGAConfig.fir@561600.4]*/
   .mmio_axi_0_aw_ready (mmio_axi_0_aw_ready), // @[:freedom.serve.SERVEiFPGAConfig.fir@561601.4]
   .mmio_axi_0_aw_valid (mmio_axi_0_aw_valid), // @[:freedom.serve.SERVEiFPGAConfig.fir@561601.4]
   .mmio_axi_0_aw_bits_id (mmio_axi_0_aw_bits_id), // @[:freedom.serve.SERVEiFPGAConfig.fir@561601.4]
